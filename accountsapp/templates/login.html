@@ -1,0 +1,9 @@
+{% block content %}
+<h1>Welcome to the login page</h1>
+<form method="post" action="{% url 'login_page' %}">
+    {% csrf_token %}
+    <h3>{{ form.as_p }}</h3>
+    <button type="submit">Login</button>
+</form>
+<h3>If you haven`t an account, please <a href="{% url 'register_page' %}"> click</a></h3>
+{% endblock %}

@@ -8,14 +8,16 @@ class UserCreationForm(forms.ModelForm):
     error_messages = {
         'password_mismatch': "The two password fields didn't match.",
         'password_invalid': "The password content does not have a capital character or the length is less than 8.",
-        'name_not_capitalized': "First name and last name should start with a capital letter."
+        'name_not_capitalized': "First name should start with a capital letter.",
+        'surname_not_capitalized': "Last_name name should start with a capital letter."
     }
     password1 = forms.CharField(label=("Password"))
     password2 = forms.CharField(label=("Password confirmation"))
+    photo = forms.ImageField(label=("Photo"), required=False)
 
     class Meta:
         model = User
-        fields = ("username", "email", "first_name", "last_name", "photo")
+        fields = ("username", "email", "first_name", "last_name")
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
@@ -36,20 +38,33 @@ class UserCreationForm(forms.ModelForm):
             )
         return password1
 
-    def clean(self):
+    def clean_first_name(self):
         cleaned_data = super().clean()
         first_name = cleaned_data.get("first_name")
-        last_name = cleaned_data.get("last_name")
 
-        if first_name and not first_name[0].isupper() or last_name and not last_name[0].isupper():
+        if first_name and not first_name[0].isupper():
             raise forms.ValidationError(
                 self.error_messages['name_not_capitalized'],
                 code='name_not_capitalized',
             )
+        return first_name
+    
+    def clean_last_name(self):
+        cleaned_data = super().clean()
+        last_name = cleaned_data.get("last_name")
 
+        if last_name and not last_name[0].isupper():
+            raise forms.ValidationError(
+                self.error_messages['surname_not_capitalized'],
+                code='surname_not_capitalized',
+            )
+        return last_name
+    
     def save(self, commit=True):
         user = super(UserCreationForm, self).save(commit=False)
         user.set_password(self.cleaned_data["password1"])
+        if self.cleaned_data.get("photo"): 
+            user.photo = self.cleaned_data["photo"]
         if commit:
             user.save()
         return user
