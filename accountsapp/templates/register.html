@@ -1,4 +1,7 @@
+{% extends 'base.html' %}
+
 {% block content %}
+<div class="reg_log_acc">
 <h1>Welcome to the registration page</h1>
 <div>
     <form method="post" enctype="multipart/form-data">
@@ -31,5 +34,6 @@
         <input type="submit" value="Registration">
       </form>
       <h3>If you already have an account, please<a href="{% url 'login_page' %}"> click!</a></h3>
+</div>
 </div>
 {% endblock %}

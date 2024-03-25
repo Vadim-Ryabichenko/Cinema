@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cinema</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link type="image/x-icon" href="{% static 'task.ico' %}" rel="shortcut icon">
+</head>
+<body>
+    <div class = 'content'>
+    {% block content %}
+    {% endblock %}
+    </div>
+</body>
+</html>

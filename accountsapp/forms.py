@@ -11,8 +11,8 @@ class UserCreationForm(forms.ModelForm):
         'name_not_capitalized': "First name should start with a capital letter.",
         'surname_not_capitalized': "Last_name name should start with a capital letter."
     }
-    password1 = forms.CharField(label=("Password"))
-    password2 = forms.CharField(label=("Password confirmation"))
+    password1 = forms.CharField(label=("Password"), widget=forms.PasswordInput)
+    password2 = forms.CharField(label=("Password confirmation"), widget=forms.PasswordInput)
     photo = forms.ImageField(label=("Photo"), required=False)
 
     class Meta:

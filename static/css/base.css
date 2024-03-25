@@ -1,0 +1,39 @@
+.reg_log_acc {
+    background: linear-gradient(to right, #000000, #808080);
+    color: orange;
+    text-shadow: 0 0 3px rgb(244, 6, 6);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 100px; 
+    max-width: 80%; 
+    text-align: center; 
+    margin: 100px auto 0; 
+}
+
+.reg_log_acc input[type="text"],
+.reg_log_acc input[type="password"] {
+    background-color: #f0f0f0; 
+    padding: 5px;
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+}
+
+.reg_log_acc input[type="text"]:focus,
+.reg_log_acc input[type="password"]:focus {
+    background-color: #e0e0e0; 
+}
+
+.reg_log_acc button[type="submit"] {
+    background-color: orange; 
+    color: #fff; 
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold; 
+}
+
+.reg_log_acc button[type="submit"]:hover {
+    background-color: #ff7f00; 
+}
+

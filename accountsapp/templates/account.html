@@ -1,10 +1,28 @@
+{% extends 'base.html' %}
+
 {% block content %}
-<h1>Hello, {{user.username}} <img src="{{user.photo.url}}" alt="My photo" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;"></h1>
+<div class="reg_log_acc">
+    {% if user.photo %}
+    <h1>Hello, {{user.username}}  <img src="{{user.photo.url}}" alt="My photo" style="width: 100px; height: 100px; border: 2px solid #ccc; border-radius: 50%; object-fit: cover; vertical-align: middle;"></h1>
+    {% else %}
+    <h1>Hello, {{user.username}}  <div style="width: 100px; height: 100px; border: 2px solid #ccc; border-radius: 50%; display: inline-block; vertical-align: middle; font-size: 24px; color: #999; text-align: center;">
+    </div></h1>
+    {% endif %}
 <br>
+{% if form.errors %}
+        <div class="errors">
+            {% for field, errors in form.errors.items %}
+                {% for error in errors %}
+                    <h4>{{ error }}<h4>
+                {% endfor %}
+            {% endfor %}
+        </div>
+{% endif %}
 <h2>You can update some personal information or leave everything as is</h2>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
+    <h3>{{ form.as_p }}</h3>
     <button type="submit">Save Changes</button>
 </form>
+</div>
 {% endblock %}
